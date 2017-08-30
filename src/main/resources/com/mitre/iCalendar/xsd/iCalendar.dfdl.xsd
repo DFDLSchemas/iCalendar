@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+	xmlns:daf="urn:ogf:dfdl:2013:imp:opensource.ncsa.illinois.edu:2012:ext"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:math="http://www.w3.org/2005/xpath-functions/math"
+	elementFormDefault="qualified">
+
+	<!--
+        NOTICE
+        
+        This software was produced for the U. S. Government under
+        Basic Contract No. W15P7T-13-C-A802, and is subject to the
+        Rights in Noncommercial Computer Software and Noncommercial
+        Computer Software Documentation Clause 252.227-7014 (FEB 2012)
+        
+        Copyright 2017 The MITRE Corporation.
+    -->
+	<!-- 
+        DFDL Schema for the iCalendar format.
+        Author: Roger Costello, The MITRE Corporation.
+        Version: 0.1
+        Date: August 30, 2017
+      -->
+	
+	<xs:annotation>
+		<xs:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:defineEscapeScheme name="QuotedStrings">
+				<dfdl:escapeScheme escapeKind="escapeBlock" escapeBlockStart="&quot;" escapeBlockEnd="&quot;"
+					escapeEscapeCharacter="\" extraEscapedCharacters="" generateEscapeBlock="whenNeeded"
+					> </dfdl:escapeScheme>
+			</dfdl:defineEscapeScheme>
+			<dfdl:defineEscapeScheme name="Backslash">
+				<dfdl:escapeScheme escapeKind="escapeCharacter" escapeCharacter="\"
+					escapeEscapeCharacter="\" extraEscapedCharacters="" generateEscapeBlock="whenNeeded"
+					> </dfdl:escapeScheme>
+			</dfdl:defineEscapeScheme>
+			<dfdl:defineFormat name="DefaultPropertiesFormat">
+				<dfdl:format alignment="1" alignmentUnits="bytes" encodingErrorPolicy="replace" binaryFloatRep="ieee" binaryNumberRep="binary" byteOrder="bigEndian"
+					calendarPatternKind="implicit" documentFinalTerminatorCanBeMissing="yes" emptyValueDelimiterPolicy="none"
+					escapeSchemeRef="" fillByte="f" floating="no" ignoreCase="yes" initiatedContent="no" initiator="" leadingSkip="0" outputNewLine="%CR;%LF;"
+					lengthUnits="characters"  separator="" separatorSuppressionPolicy="anyEmpty" textStandardZeroRep="0" textStandardInfinityRep="Inf" 
+					textStandardExponentRep="E" textStandardNaNRep="NaN" textNumberPattern="#,##0.###;-#,##0.###" textNumberRounding="explicit" 
+					textNumberRoundingMode="roundUnnecessary" textNumberRoundingIncrement="0" textStandardGroupingSeparator=","
+					separatorPosition="infix" sequenceKind="ordered" terminator="" textBidi="no" textNumberCheckPolicy="strict" textNumberRep="standard" textPadKind="none"
+					textStandardBase="10" textTrimKind="none" trailingSkip="0" truncateSpecifiedLengthString="no" utf16Width="fixed"
+					encoding="US-ASCII" representation="text" nilKind="literalValue" nilValueDelimiterPolicy="none" lengthKind="delimited" occursCountKind="parsed"  />
+			</dfdl:defineFormat>
+			<dfdl:format ref="DefaultPropertiesFormat"/>
+		</xs:appinfo>
+	</xs:annotation> 
+	
+	<!--
+		At the top level of the iCalendar object model is an "iCalendar
+        stream".  This object encompasses multiple "iCalendar objects".
+    -->
+	<xs:element name="icalendar">
+		<xs:complexType>
+			<xs:sequence dfdl:separator="%NL;" dfdl:separatorPosition="infix" dfdl:separatorSuppressionPolicy="trailingEmptyStrict">
+				<!--  
+						An iCalendar stream can contain one or more iCalendar objects.  Each
+   						iCalendar object, delimited by "BEGIN:VCALENDAR" and "END:VCALENDAR",
+   						is enclosed by the vcalendar XML element.
+					-->
+				<xs:element name="vcalendar" dfdl:initiator="BEGIN:VCALENDAR%NL;" dfdl:terminator="END:VCALENDAR" 
+					        maxOccurs="unbounded" dfdl:occursCountKind="implicit">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="properties" />
+							<xs:element ref="components" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="endNL" type="xs:string" 
+					dfdl:lengthKind="explicit" dfdl:length="0"
+					minOccurs="0" dfdl:occursCountKind="implicit" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="properties">
+		<xs:complexType>
+			<xs:sequence dfdl:separator="%NL;" dfdl:terminator="%NL;" dfdl:separatorPosition="infix">
+				<xs:element ref="property" maxOccurs="unbounded" dfdl:occursCountKind="implicit">
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="property">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" dfdl:lengthKind="pattern"
+					dfdl:lengthPattern=".*?(?=[;:])" />
+				<xs:choice>
+					<xs:choice dfdl:choiceDispatchKey="{ ./name }">
+						<xs:element name="action" dfdl:choiceBranchKey="ACTION" type="stuff-after-property-name" />
+						<xs:element name="attach" dfdl:choiceBranchKey="ATTACH" type="stuff-after-property-name" />
+						<xs:element name="attendee" dfdl:choiceBranchKey="ATTENDEE" type="stuff-after-property-name" />
+						<xs:element name="calscale" dfdl:choiceBranchKey="CALSCALE" type="stuff-after-property-name" />
+						<xs:element name="categories" dfdl:choiceBranchKey="CATEGORIES" type="stuff-after-property-name" />
+						<xs:element name="class" dfdl:choiceBranchKey="CLASS" type="stuff-after-property-name" />
+						<xs:element name="comment" dfdl:choiceBranchKey="COMMENT" type="stuff-after-property-name" />
+						<xs:element name="completed" dfdl:choiceBranchKey="COMPLETED" type="stuff-after-property-name" />
+						<xs:element name="contact" dfdl:choiceBranchKey="CONTACT" type="stuff-after-property-name" />
+						<xs:element name="created" dfdl:choiceBranchKey="CREATED" type="stuff-after-property-name" />
+						<xs:element name="description" dfdl:choiceBranchKey="DESCRIPTION" type="stuff-after-property-name" />
+						<xs:element name="dtend" dfdl:choiceBranchKey="DTEND" type="stuff-after-property-name" />
+						<xs:element name="dtstamp" dfdl:choiceBranchKey="DTSTAMP" type="stuff-after-property-name" />
+						<xs:element name="dtstart" dfdl:choiceBranchKey="DTSTART" type="stuff-after-property-name" />
+						<xs:element name="due" dfdl:choiceBranchKey="DUE" type="stuff-after-property-name" />
+						<xs:element name="duration" dfdl:choiceBranchKey="DURATION" type="stuff-after-property-name" />
+						<xs:element name="exdate" dfdl:choiceBranchKey="EXDATE" type="stuff-after-property-name" />
+						<xs:element name="exrule" dfdl:choiceBranchKey="EXRULE" type="stuff-after-property-name" />
+						<xs:element name="freebusy" dfdl:choiceBranchKey="FREEBUSY" type="stuff-after-property-name" />
+						<xs:element name="geo" dfdl:choiceBranchKey="GEO" type="stuff-after-property-name" />
+						<xs:element name="last-mod" dfdl:choiceBranchKey="LAST-MOD" type="stuff-after-property-name" />
+						<xs:element name="location" dfdl:choiceBranchKey="LOCATION" type="stuff-after-property-name" />
+						<xs:element name="method" dfdl:choiceBranchKey="METHOD" type="stuff-after-property-name" />
+						<xs:element name="organizer" dfdl:choiceBranchKey="ORGANIZER" type="stuff-after-property-name" />
+						<xs:element name="percent" dfdl:choiceBranchKey="PERCENT" type="stuff-after-property-name" />
+						<xs:element name="priority" dfdl:choiceBranchKey="PRIORITY" type="stuff-after-property-name" />
+						<xs:element name="prodid" dfdl:choiceBranchKey="PRODID" type="stuff-after-property-name" />
+						<xs:element name="rdate" dfdl:choiceBranchKey="RDATE" type="stuff-after-property-name" />
+						<xs:element name="recurid" dfdl:choiceBranchKey="RECURID" type="stuff-after-property-name" />
+						<xs:element name="related" dfdl:choiceBranchKey="RELATED" type="stuff-after-property-name" />
+						<xs:element name="repeat" dfdl:choiceBranchKey="REPEAT" type="stuff-after-property-name" />
+						<xs:element name="resources" dfdl:choiceBranchKey="RESOURCES" type="stuff-after-property-name" />
+						<xs:element name="rrule" dfdl:choiceBranchKey="RRULE" type="stuff-after-property-name" />
+						<xs:element name="rstatus" dfdl:choiceBranchKey="RSTATUS" type="stuff-after-property-name" />
+						<xs:element name="sequence" dfdl:choiceBranchKey="SEQUENCE" type="stuff-after-property-name" />
+						<xs:element name="status" dfdl:choiceBranchKey="STATUS" type="stuff-after-property-name" />
+						<xs:element name="summary" dfdl:choiceBranchKey="SUMMARY" type="stuff-after-property-name" />
+						<xs:element name="transp" dfdl:choiceBranchKey="TRANSP" type="stuff-after-property-name" />
+						<xs:element name="trigger" dfdl:choiceBranchKey="TRIGGER" type="stuff-after-property-name" />
+						<xs:element name="tzid" dfdl:choiceBranchKey="TZID" type="stuff-after-property-name" />
+						<xs:element name="tzname" dfdl:choiceBranchKey="TZNAME" type="stuff-after-property-name" />
+						<xs:element name="tzoffsetfrom" dfdl:choiceBranchKey="TZOFFSETFROM" type="stuff-after-property-name" />
+						<xs:element name="tzoffsetto" dfdl:choiceBranchKey="TZOFFSETTO" type="stuff-after-property-name" />
+						<xs:element name="tzurl" dfdl:choiceBranchKey="TZURL" type="stuff-after-property-name" />
+						<xs:element name="uid" dfdl:choiceBranchKey="UID" type="stuff-after-property-name" />
+						<xs:element name="url" dfdl:choiceBranchKey="URL" type="stuff-after-property-name" />
+						<xs:element name="version" dfdl:choiceBranchKey="VERSION" type="stuff-after-property-name" />
+					</xs:choice>
+					<xs:element name="x-prop" type="unknown-stuff" />
+					<xs:element name="iana-prop" type="unknown-stuff" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="stuff-after-property-name">
+		<xs:sequence>
+			<xs:sequence dfdl:terminator=":">
+				<xs:element name="parameters" type="Parameters" minOccurs="0" dfdl:occursCountKind="implicit" />
+			</xs:sequence>
+			<xs:element name="property-value" type="PropertyValue" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Parameters">
+		<xs:sequence dfdl:separator=";" dfdl:separatorPosition="prefix">
+			<xs:element name="parameter" type="Parameter" maxOccurs="unbounded" dfdl:occursCountKind="implicit" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Parameter">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" dfdl:terminator="=" />
+			<xs:choice dfdl:choiceDispatchKey="{ ./name }">
+				<xs:element name="altrep" type="ParameterValue" dfdl:choiceBranchKey="ALTREP"/>
+				<xs:element name="cn" type="ParameterValue" dfdl:choiceBranchKey="CN"/>
+				<xs:element name="cutype" type="ParameterValue" dfdl:choiceBranchKey="CUTYPE"/>
+				<xs:element name="delegated-from" type="ParameterValue" dfdl:choiceBranchKey="DELEGATED-FROM"/>
+				<xs:element name="delegated-to" type="ParameterValue" dfdl:choiceBranchKey="DELEGATED-TO"/>
+				<xs:element name="dir" type="ParameterValue" dfdl:choiceBranchKey="DIR"/>
+				<xs:element name="encoding" type="ParameterValue" dfdl:choiceBranchKey="ENCODING"/>
+				<xs:element name="fmttype" type="ParameterValue" dfdl:choiceBranchKey="FMTTYPE"/>
+				<xs:element name="fbtype" type="ParameterValue" dfdl:choiceBranchKey="FBTYPE"/>
+				<xs:element name="language" type="ParameterValue" dfdl:choiceBranchKey="LANGUAGE"/>
+				<xs:element name="member" type="ParameterValue" dfdl:choiceBranchKey="MEMBER"/>
+				<xs:element name="partstat" type="ParameterValue" dfdl:choiceBranchKey="PARTSTAT"/>
+				<xs:element name="range" type="ParameterValue" dfdl:choiceBranchKey="RANGE"/>
+				<xs:element name="related" type="ParameterValue" dfdl:choiceBranchKey="RELATED"/>
+				<xs:element name="reltype" type="ParameterValue" dfdl:choiceBranchKey="RELTYPE"/>
+				<xs:element name="role" type="ParameterValue" dfdl:choiceBranchKey="ROLE"/>
+				<xs:element name="rsvp" type="ParameterValue" dfdl:choiceBranchKey="RSVP"/>
+				<xs:element name="sent-by" type="ParameterValue" dfdl:choiceBranchKey="SENT-BY"/>
+				<xs:element name="tzid" type="ParameterValue" dfdl:choiceBranchKey="TZID"/>
+				<xs:element name="value" type="ParameterValue" dfdl:choiceBranchKey="VALUE"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ParameterValue">
+		<xs:sequence dfdl:separator=", %NL;%SP; %NL;%HT;" dfdl:separatorPosition="infix">
+			<!-- 
+				Values can have quotes around them, so this is where you put the ref to the escapeScheme
+		    -->
+			<xs:element name="this-is-the-value" type="xs:string" maxOccurs="unbounded" dfdl:occursCountKind="implicit" dfdl:escapeSchemeRef="QuotedStrings" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="PropertyValue">
+		<xs:sequence dfdl:separator="; , %NL;%SP; %NL;%HT;" dfdl:separatorPosition="infix">
+			<!-- 
+				Values can have quotes around them, so this is where you put the ref to the escapeScheme
+		    -->
+			<xs:element name="this-is-the-value" type="xs:string" maxOccurs="unbounded" dfdl:occursCountKind="implicit" dfdl:escapeSchemeRef="Backslash" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="unknown-stuff">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" dfdl:inputValueCalc="{ ../../name }">
+				<xs:annotation>
+					<xs:appinfo source="http://www.ogf.org/dfdl/">
+						<dfdl:discriminator test="{ (. ne 'BEGIN') and (. ne 'END') and (. ne '') }" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence dfdl:terminator=":" dfdl:escapeSchemeRef="QuotedStrings">
+				<xs:element name="parameters" type="Parameters" minOccurs="0" dfdl:occursCountKind="implicit" />
+			</xs:sequence>
+			<xs:element name="property-value" type="PropertyValue" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="components">
+		<xs:complexType>
+			<xs:sequence dfdl:separator="%NL;" dfdl:terminator="%NL;" dfdl:separatorPosition="infix">
+				<xs:element name="component" maxOccurs="unbounded" dfdl:occursCountKind="implicit">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="vevent" />
+							<xs:element ref="vtodo" />
+							<xs:element ref="vjournal" />
+							<xs:element ref="vfreebusy" />
+							<xs:element ref="vtimezone" />
+							<xs:element ref="x-comp" />
+							<xs:element ref="iana-comp" />
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="vevent" dfdl:initiator="BEGIN:VEVENT%NL;" dfdl:terminator="END:VEVENT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+				<xs:element ref="valarm" minOccurs="0" maxOccurs="unbounded" dfdl:occursCountKind="implicit" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="valarm" dfdl:initiator="BEGIN:VALARM%NL;" dfdl:terminator="END:VALARM%NL;">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="vtodo" dfdl:initiator="BEGIN:VTODO%NL;" dfdl:terminator="END:VTODO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+				<xs:element ref="valarm" minOccurs="0" maxOccurs="unbounded" dfdl:occursCountKind="implicit" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="vjournal" dfdl:initiator="BEGIN:VJOURNAL%NL;" dfdl:terminator="END:VJOURNAL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="vfreebusy" dfdl:initiator="BEGIN:VFREEBUSY%NL;" dfdl:terminator="END:VFREEBUSY">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="vtimezone" dfdl:initiator="BEGIN:VTIMEZONE%NL;" dfdl:terminator="END:VTIMEZONE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="item" maxOccurs="unbounded" dfdl:occursCountKind="implicit">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="properties" />
+							<xs:element ref="standard" />
+							<xs:element ref="daylight" />
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="x-comp">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="x-comp" dfdl:initiator="BEGIN:x-" dfdl:terminator="END:">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="x-comp-name" type="xs:string" dfdl:terminator="%NL;" />
+							<xs:element ref="properties" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="end-x-comp" type="xs:string" dfdl:terminator="%NL;" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="iana-comp">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="iana-comp" dfdl:initiator="BEGIN:" dfdl:terminator="END:">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="iana-comp-name" type="xs:string" dfdl:terminator="%NL;" />
+							<xs:element ref="properties" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="end-iana-comp" type="xs:string" dfdl:terminator="%NL;" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="standard" dfdl:initiator="BEGIN:STANDARD%NL;" dfdl:terminator="END:STANDARD%NL;">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="daylight" dfdl:initiator="BEGIN:DAYLIGHT%NL;" dfdl:terminator="END:DAYLIGHT%NL;">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="properties" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>
