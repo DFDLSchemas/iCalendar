@@ -17,10 +17,10 @@
         Copyright 2017 The MITRE Corporation.
     -->
 	<!-- 
-        DFDL Schema for the iCalendar format.
+        DFDL Schema for the iCalendar format, RFC 5545 and RFC 7986.
         Author: Roger Costello, The MITRE Corporation.
         Version: 0.1
-        Date: August 30, 2017
+        Date: October 30, 2017
       -->
 	
 	<xs:annotation>
@@ -90,18 +90,20 @@
 	<xs:element name="property">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="name" type="xs:string" dfdl:lengthKind="pattern"
+				<xs:element name="property-name" type="xs:string" dfdl:lengthKind="pattern"
 					dfdl:lengthPattern=".*?(?=[;:])" />
 				<xs:choice>
-					<xs:choice dfdl:choiceDispatchKey="{ ./name }">
+					<xs:choice dfdl:choiceDispatchKey="{ ./property-name }">
 						<xs:element name="action" dfdl:choiceBranchKey="ACTION" type="stuff-after-property-name" />
 						<xs:element name="attach" dfdl:choiceBranchKey="ATTACH" type="stuff-after-property-name" />
 						<xs:element name="attendee" dfdl:choiceBranchKey="ATTENDEE" type="stuff-after-property-name" />
 						<xs:element name="calscale" dfdl:choiceBranchKey="CALSCALE" type="stuff-after-property-name" />
 						<xs:element name="categories" dfdl:choiceBranchKey="CATEGORIES" type="stuff-after-property-name" />
 						<xs:element name="class" dfdl:choiceBranchKey="CLASS" type="stuff-after-property-name" />
+						<xs:element name="color" dfdl:choiceBranchKey="COLOR" type="stuff-after-property-name" />
 						<xs:element name="comment" dfdl:choiceBranchKey="COMMENT" type="stuff-after-property-name" />
 						<xs:element name="completed" dfdl:choiceBranchKey="COMPLETED" type="stuff-after-property-name" />
+						<xs:element name="conference" dfdl:choiceBranchKey="CONFERENCE" type="stuff-after-property-name" />
 						<xs:element name="contact" dfdl:choiceBranchKey="CONTACT" type="stuff-after-property-name" />
 						<xs:element name="created" dfdl:choiceBranchKey="CREATED" type="stuff-after-property-name" />
 						<xs:element name="description" dfdl:choiceBranchKey="DESCRIPTION" type="stuff-after-property-name" />
@@ -114,21 +116,25 @@
 						<xs:element name="exrule" dfdl:choiceBranchKey="EXRULE" type="stuff-after-property-name" />
 						<xs:element name="freebusy" dfdl:choiceBranchKey="FREEBUSY" type="stuff-after-property-name" />
 						<xs:element name="geo" dfdl:choiceBranchKey="GEO" type="stuff-after-property-name" />
-						<xs:element name="last-mod" dfdl:choiceBranchKey="LAST-MOD" type="stuff-after-property-name" />
+						<xs:element name="image" dfdl:choiceBranchKey="IMAGE" type="stuff-after-property-name" />
+						<xs:element name="last-mod" dfdl:choiceBranchKey="LAST-MODIFIED" type="stuff-after-property-name" />
 						<xs:element name="location" dfdl:choiceBranchKey="LOCATION" type="stuff-after-property-name" />
 						<xs:element name="method" dfdl:choiceBranchKey="METHOD" type="stuff-after-property-name" />
+						<xs:element name="name" dfdl:choiceBranchKey="NAME" type="stuff-after-property-name" />
 						<xs:element name="organizer" dfdl:choiceBranchKey="ORGANIZER" type="stuff-after-property-name" />
 						<xs:element name="percent" dfdl:choiceBranchKey="PERCENT" type="stuff-after-property-name" />
 						<xs:element name="priority" dfdl:choiceBranchKey="PRIORITY" type="stuff-after-property-name" />
 						<xs:element name="prodid" dfdl:choiceBranchKey="PRODID" type="stuff-after-property-name" />
 						<xs:element name="rdate" dfdl:choiceBranchKey="RDATE" type="stuff-after-property-name" />
 						<xs:element name="recurid" dfdl:choiceBranchKey="RECURID" type="stuff-after-property-name" />
+						<xs:element name="refresh-interval" dfdl:choiceBranchKey="REFRESH-INTERVAL" type="stuff-after-property-name" />
 						<xs:element name="related" dfdl:choiceBranchKey="RELATED" type="stuff-after-property-name" />
 						<xs:element name="repeat" dfdl:choiceBranchKey="REPEAT" type="stuff-after-property-name" />
 						<xs:element name="resources" dfdl:choiceBranchKey="RESOURCES" type="stuff-after-property-name" />
 						<xs:element name="rrule" dfdl:choiceBranchKey="RRULE" type="stuff-after-property-name" />
 						<xs:element name="rstatus" dfdl:choiceBranchKey="RSTATUS" type="stuff-after-property-name" />
 						<xs:element name="sequence" dfdl:choiceBranchKey="SEQUENCE" type="stuff-after-property-name" />
+						<xs:element name="SOURCE" dfdl:choiceBranchKey="SOURCE" type="stuff-after-property-name" />
 						<xs:element name="status" dfdl:choiceBranchKey="STATUS" type="stuff-after-property-name" />
 						<xs:element name="summary" dfdl:choiceBranchKey="SUMMARY" type="stuff-after-property-name" />
 						<xs:element name="transp" dfdl:choiceBranchKey="TRANSP" type="stuff-after-property-name" />
@@ -166,17 +172,21 @@
 	
 	<xs:complexType name="Parameter">
 		<xs:sequence>
-			<xs:element name="name" type="xs:string" dfdl:terminator="=" />
-			<xs:choice dfdl:choiceDispatchKey="{ ./name }">
+			<xs:element name="parameter-name" type="xs:string" dfdl:terminator="=" />
+			<xs:choice dfdl:choiceDispatchKey="{ ./parameter-name }">
 				<xs:element name="altrep" type="ParameterValue" dfdl:choiceBranchKey="ALTREP"/>
 				<xs:element name="cn" type="ParameterValue" dfdl:choiceBranchKey="CN"/>
 				<xs:element name="cutype" type="ParameterValue" dfdl:choiceBranchKey="CUTYPE"/>
 				<xs:element name="delegated-from" type="ParameterValue" dfdl:choiceBranchKey="DELEGATED-FROM"/>
 				<xs:element name="delegated-to" type="ParameterValue" dfdl:choiceBranchKey="DELEGATED-TO"/>
 				<xs:element name="dir" type="ParameterValue" dfdl:choiceBranchKey="DIR"/>
+				<xs:element name="display" type="ParameterValue" dfdl:choiceBranchKey="DISPLAY"/>
+				<xs:element name="email" type="ParameterValue" dfdl:choiceBranchKey="EMAIL"/>
 				<xs:element name="encoding" type="ParameterValue" dfdl:choiceBranchKey="ENCODING"/>
+				<xs:element name="feature" type="ParameterValue" dfdl:choiceBranchKey="FEATURE"/>
 				<xs:element name="fmttype" type="ParameterValue" dfdl:choiceBranchKey="FMTTYPE"/>
 				<xs:element name="fbtype" type="ParameterValue" dfdl:choiceBranchKey="FBTYPE"/>
+				<xs:element name="label" type="ParameterValue" dfdl:choiceBranchKey="LABEL"/>
 				<xs:element name="language" type="ParameterValue" dfdl:choiceBranchKey="LANGUAGE"/>
 				<xs:element name="member" type="ParameterValue" dfdl:choiceBranchKey="MEMBER"/>
 				<xs:element name="partstat" type="ParameterValue" dfdl:choiceBranchKey="PARTSTAT"/>
@@ -202,17 +212,29 @@
 	</xs:complexType>
 	
 	<xs:complexType name="PropertyValue">
+		<!--
+			Some properties defined in the iCalendar object can have multiple
+			values.  The general rule for encoding multi-valued items is to
+			simply create a new content line for each value, including the
+			property name.  However, it should be noted that some properties
+			support encoding multiple values in a single property by separating
+			the values with a COMMA character.
+			
+			Some properties use the semicolon to separate values, e.g., rstatus.
+		-->
 		<xs:sequence dfdl:separator="; , %NL;%SP; %NL;%HT;" dfdl:separatorPosition="infix">
 			<!-- 
 				Values can have quotes around them, so this is where you put the ref to the escapeScheme
 		    -->
-			<xs:element name="this-is-the-value" type="xs:string" maxOccurs="unbounded" dfdl:occursCountKind="implicit" dfdl:escapeSchemeRef="Backslash" />
+			<!-- Bug in Daffodil results in unparsing chopping off characters. The temporary fix is to not use the Backslash escapeSchemaRef -->
+			<!--<xs:element name="this-is-the-value" type="xs:string" maxOccurs="unbounded" dfdl:occursCountKind="implicit" dfdl:escapeSchemeRef="Backslash" />-->
+			<xs:element name="this-is-the-value" type="xs:string" maxOccurs="unbounded" dfdl:occursCountKind="implicit" />
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="unknown-stuff">
 		<xs:sequence>
-			<xs:element name="name" type="xs:string" dfdl:inputValueCalc="{ ../../name }">
+			<xs:element name="name-of-nonstandard-property" type="xs:string" dfdl:inputValueCalc="{ ../../property-name }">
 				<xs:annotation>
 					<xs:appinfo source="http://www.ogf.org/dfdl/">
 						<dfdl:discriminator test="{ (. ne 'BEGIN') and (. ne 'END') and (. ne '') }" />
