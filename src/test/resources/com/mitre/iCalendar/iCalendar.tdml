@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tdml:testSuite
+ suiteName="iCalendar"
+ description="iCalendar tests"
+ xmlns:tdml="http://www.ibm.com/xmlns/dfdl/testData"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ xmlns:ical="urn:iCalendar"
+ defaultRoundTrip="true"
+>
+
+  <tdml:parserTestCase name="ex01" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on">
+    <tdml:document>
+      <tdml:documentPart type="file">com/mitre/iCalendar/data/example01.ics</tdml:documentPart>
+    </tdml:document>
+    <tdml:infoset>
+      <tdml:dfdlInfoset type="file">com/mitre/iCalendar/infosets/example01-results.xml</tdml:dfdlInfoset>
+    </tdml:infoset>
+  </tdml:parserTestCase>
+  
+  <tdml:parserTestCase name="ex02" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on">
+    <tdml:document>
+      <tdml:documentPart type="file">com/mitre/iCalendar/data/example02.ics</tdml:documentPart>
+    </tdml:document>
+    <tdml:infoset>
+      <tdml:dfdlInfoset type="file">com/mitre/iCalendar/infosets/example02-results.xml</tdml:dfdlInfoset>
+    </tdml:infoset>
+  </tdml:parserTestCase>
+
+</tdml:testSuite>

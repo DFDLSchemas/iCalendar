@@ -1,0 +1,1540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="icalendar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vcalendar" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="properties">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="property" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="property-name" type="nameType"/>
+                                                  <xs:choice>
+                                                  <xs:element ref="image"/>
+                                                  <xs:element ref="color"/>
+                                                  <xs:element ref="source"/>
+                                                  <xs:element ref="refresh-interval"/>
+                                                  <xs:element ref="description"/>
+                                                  <xs:element ref="categories"/>
+                                                  <xs:element ref="url"/>
+                                                  <xs:element ref="last-modified"/>
+                                                  <xs:element ref="name"/>
+                                                  <xs:element ref="calscale"/>
+                                                  <xs:element ref="method"/>
+                                                  <xs:element ref="prodid"/>
+                                                  <xs:element ref="version"/>
+                                                  </xs:choice>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element ref="components"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="image-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="color">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="color-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="source">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="source-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="refresh-interval">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="refresh-interval-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="description">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="description-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="categories">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="categories-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="url">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="url-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="last-modified">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="last-modified-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="name">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="name-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="calscale">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="calscale-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="method">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="method-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="prodid">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="prodid-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="version">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="version-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="properties">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="property" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="property">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="property-name" type="nameType"/>
+                <xs:choice>
+                    <xs:element ref="action"/>
+                    <xs:element ref="attach"/>
+                    <xs:element ref="attendee"/>
+                    <xs:element ref="categories"/>
+                    <xs:element ref="class"/>
+                    <xs:element ref="color"/>
+                    <xs:element ref="comment"/>
+                    <xs:element ref="completed"/>
+                    <xs:element ref="conference"/>
+                    <xs:element ref="contact"/>
+                    <xs:element ref="created"/>
+                    <xs:element ref="description"/>
+                    <xs:element ref="dtend"/>
+                    <xs:element ref="dtstamp"/>
+                    <xs:element ref="dtstart"/>
+                    <xs:element ref="due"/>
+                    <xs:element ref="duration"/>
+                    <xs:element ref="exdate"/>
+                    <xs:element ref="exrule"/>
+                    <xs:element ref="freebusy"/>
+                    <xs:element ref="geo"/>
+                    <xs:element ref="image"/>
+                    <xs:element ref="last-modified"/>
+                    <xs:element ref="location"/>
+                    <xs:element ref="organizer"/>
+                    <xs:element ref="percent"/>
+                    <xs:element ref="priority"/>
+                    <xs:element ref="rdate"/>
+                    <xs:element ref="recurid"/>
+                    <xs:element ref="related-to"/>
+                    <xs:element ref="request-status"/>
+                    <xs:element ref="repeat"/>
+                    <xs:element ref="resources"/>
+                    <xs:element ref="rrule"/>
+                    <xs:element ref="rstatus"/>
+                    <xs:element ref="sequence"/>
+                    <xs:element ref="source"/>
+                    <xs:element ref="status"/>
+                    <xs:element ref="summary"/>
+                    <xs:element ref="transp"/>
+                    <xs:element ref="trigger"/>
+                    <xs:element ref="tzid"/>
+                    <xs:element ref="tzname"/>
+                    <xs:element ref="tzoffsetfrom"/>
+                    <xs:element ref="tzoffsetto"/>
+                    <xs:element ref="tzurl"/>
+                    <xs:element ref="uid"/>
+                    <xs:element ref="url"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="action">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="action-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attach">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="attach-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attendee">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="attendee-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="class">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="class-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="comment">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="comment-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="completed">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="completed-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conference">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="conference-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="contact">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="contact-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="created">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="created-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dtend">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="dtend-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dtstamp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="dtstamp-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dtstart">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="dtstart-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="due">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="due-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="duration">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="duration-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="exdate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="exdate-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="exrule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="exrule-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="freebusy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="freebusy-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="geo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="geo-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="location">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="location-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="organizer">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="organizer-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="percent">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="percent-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="priority">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="priority-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rdate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="rdate-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="recurid">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="recurid-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="related-to">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="related-to-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="request-status">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="request-status-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="repeat">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="repeat-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="resources">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="resources-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rrule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="rrule-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rstatus">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="rstatus-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="sequence-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="status">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="status-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="summary">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="summary-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="transp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="transp-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="trigger">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="trigger-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tzid">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="tzid-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tzname">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="tzname-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tzoffsetfrom">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="tzoffsetfrom-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tzoffsetto">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="tzoffsetto-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tzurl">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="tzurl-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="uid">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="parameters" type="Parameters" minOccurs="0"/>
+                <xs:element name="property-value">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="uid-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Parameters">
+        <xs:sequence>
+            <xs:element name="parameter" type="Parameter" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Parameter">
+        <xs:sequence>
+            <xs:element name="parameter-name" type="nameType"/>
+            <xs:choice>
+                <xs:element name="tzid">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                                type="parameter-tzid-value"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="altrep"/>
+                <xs:element ref="cn"/>
+                <xs:element ref="cutype"/>
+                <xs:element ref="delegated-from"/>
+                <xs:element ref="delegated-to"/>
+                <xs:element ref="dir"/>
+                <xs:element ref="encoding"/>
+                <xs:element ref="fmttype"/>
+                <xs:element ref="fbtype"/>
+                <xs:element ref="language"/>
+                <xs:element ref="member"/>
+                <xs:element ref="partstat"/>
+                <xs:element ref="range"/>
+                <xs:element ref="related"/>
+                <xs:element ref="reltype"/>
+                <xs:element ref="role"/>
+                <xs:element ref="rsvp"/>
+                <xs:element ref="sent-by"/>
+                <xs:element ref="value"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="altrep">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="altrep-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cn">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="cn-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cutype">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="cutype-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="delegated-from">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded"
+                    type="delegated-from-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="delegated-to">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="delegated-to-value"
+                />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dir">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="dir-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="encoding">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="encoding-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fmttype">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="fmttype-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fbtype">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="fbtype-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="language">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="language-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="member">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="member-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="partstat">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="partstat-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="range">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="range-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="related">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="related-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="reltype">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="reltype-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="role">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="role-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rsvp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="rsvp-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sent-by">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="sent-by-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="value">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="this-is-the-value" maxOccurs="unbounded" type="value-value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="components">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="component" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="vevent"/>
+                            <xs:element ref="vtodo"/>
+                            <xs:element ref="vjournal"/>
+                            <xs:element ref="vfreebusy"/>
+                            <xs:element ref="vtimezone"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vevent">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+                <xs:element ref="valarm" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="valarm">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vtodo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+                <xs:element ref="valarm" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vjournal">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vfreebusy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vtimezone">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="item" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="properties"/>
+                            <xs:element ref="standard"/>
+                            <xs:element ref="daylight"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="standard">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="daylight">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="properties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="nameType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z0-9_]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BINARY">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="([a-zA-Z0-9\+/][a-zA-Z0-9\+/][a-zA-Z0-9\+/][a-zA-Z0-9\+/])*(([a-zA-Z0-9\+/][a-zA-Z0-9\+/]==)|([a-zA-Z0-9\+/][a-zA-Z0-9\+/][a-zA-Z0-9\+/]=))?"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BOOLEAN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRUE"/>
+            <xs:enumeration value="FALSE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CAL-ADDRESS">
+        <xs:union memberTypes="xs:anyURI mailto-URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="mailto-URI">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="mailto:[ -~]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DATE">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DATE-TIME">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])(0[0-9]|[1-5][0-9]|60)(Z)?"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DURATION">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="[\+\-]?P((([0-9]+D)((T(([0-9]+H(([0-9]+M(([0-9]+S))?))?)|([0-9]+M(([0-9]+S))?)|([0-9]+S))))?)|(T(([0-9]+H(([0-9]+M(([0-9]+S))?))?)|([0-9]+M(([0-9]+S))?)|([0-9]+S)))|([0-9]+W))"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FLOAT">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\+\-]?[0-9]+(\.[0-9]+)?"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="INTEGER">
+        <xs:restriction base="xs:int"/>
+    </xs:simpleType>
+    <xs:simpleType name="PERIOD">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="((([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])(0[0-9]|[1-5][0-9]|60)(Z)?)/(([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])(0[0-9]|[1-5][0-9]|60)(Z)?))|((([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])(0[0-9]|[1-5][0-9]|60)(Z)?)/([\+\-]?P((([0-9]+D)((T(([0-9]+H(([0-9]+M(([0-9]+S))?))?)|([0-9]+M(([0-9]+S))?)|([0-9]+S))))?)|(T(([0-9]+H(([0-9]+M(([0-9]+S))?))?)|([0-9]+M(([0-9]+S))?)|([0-9]+S)))|([0-9]+W))))"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RECUR">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="((FREQ=(SECONDLY|MINUTELY|HOURLY|DAILY|WEEKLY|MONTHLY|YEARLY))|(UNTIL=(([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])|([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])(0[0-9]|[1-5][0-9]|60)(Z)?))|(COUNT=[0-9]+)|(INTERVAL=[0-9]+)|(BYSECOND=(([0-9]|[1-5][0-9]|60)(,([0-9]|[1-5][0-9]|60))*))|(BYMINUTE=(([0-9]|[1-4][0-9]|5[0-9])(,([0-9]|[1-4][0-9]|5[0-9]))*))|(BYHOUR=(([0-9]|1[0-9]|2[0-3])(,([0-9]|1[0-9]|2[0-3]))*))|(BYDAY=((([\+\-]?([1-9]|[1-4][0-9]|5[0-3]))?((SU|MO|TU|WE|TH|FR|SA)))(,(([\+\-]?([1-9]|[1-4][0-9]|5[0-3]))?((SU|MO|TU|WE|TH|FR|SA))))*))|(BYMONTHDAY=(([\+\-]?([1-9]|[1-2][0-9]|3[0-1]))(,([\+\-]?([1-9]|[1-2][0-9]|3[0-1])))*))|(BYYEARDAY=(([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))(,([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6])))*))|(BYWEEKNO=(([\+\-]?([1-9]|[1-4][0-9]|5[0-3]))(,([\+\-]?([1-9]|[1-4][0-9]|5[0-3])))*))|(BYMONTH=(([1-9]|1[0-2])(,([1-9]|1[0-2]))*))|(BYSETPOS=((([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6])))(,(([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))))*))|(WKST=(SU|MO|TU|WE|TH|FR|SA)))(;((FREQ=(SECONDLY|MINUTELY|HOURLY|DAILY|WEEKLY|MONTHLY|YEARLY))|(UNTIL=(([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])|([0-9][0-9][0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])(0[0-9]|[1-5][0-9]|60)(Z)?))|(COUNT=[0-9]+)|(INTERVAL=[0-9]+)|(BYSECOND=(([0-9]|[1-5][0-9]|60)(,([0-9]|[1-5][0-9]|60))*))|(BYMINUTE=(([0-9]|[1-4][0-9]|5[0-9])(,([0-9]|[1-4][0-9]|5[0-9]))*))|(BYHOUR=(([0-9]|1[0-9]|2[0-3])(,([0-9]|1[0-9]|2[0-3]))*))|(BYDAY=((([\+\-]?([1-9]|[1-4][0-9]|5[0-3]))?((SU|MO|TU|WE|TH|FR|SA)))(,(([\+\-]?([1-9]|[1-4][0-9]|5[0-3]))?((SU|MO|TU|WE|TH|FR|SA))))*))|(BYMONTHDAY=(([\+\-]?([1-9]|[1-2][0-9]|3[0-1]))(,([\+\-]?([1-9]|[1-2][0-9]|3[0-1])))*))|(BYYEARDAY=(([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))(,([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6])))*))|(BYWEEKNO=(([\+\-]?([1-9]|[1-4][0-9]|5[0-3]))(,([\+\-]?([1-9]|[1-4][0-9]|5[0-3])))*))|(BYMONTH=(([1-9]|1[0-2])(,([1-9]|1[0-2]))*))|(BYSETPOS=((([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6])))(,(([\+\-]?([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))))*))|(WKST=(SU|MO|TU|WE|TH|FR|SA))))*"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TEXT">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="([  !#$%&amp;'\(\)\*\+\-\./0-9&lt;=&gt;\?@A-Z\[\\\]\^_`a-z\{\|\}~:;,&#34;]|((([Â-ß][&#x80;-¿])|((à[ -¿][&#x80;-¿])|([á-ì][&#x80;-¿][&#x80;-¿])|(í[&#x80;-&#x9f;][&#x80;-¿])|([î-ï][&#x80;-¿][&#x80;-¿]))|((ð[&#x90;-¿][&#x80;-¿][&#x80;-¿])|([ñ-ó][&#x80;-¿][&#x80;-¿][&#x80;-¿])|(ô[&#x80;-&#x8f;][&#x80;-¿][&#x80;-¿])))))*"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="URI">
+        <xs:restriction base="xs:anyURI"/>
+    </xs:simpleType>
+    <xs:simpleType name="UTC-OFFSET">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="([\+\-](0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-4][0-9]|5[0-3])((0[0-9]|[1-5][0-9]|60))?)"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="source-value">
+        <xs:restriction base="URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="refresh-interval-value">
+        <xs:restriction base="DURATION"/>
+    </xs:simpleType>
+    <xs:simpleType name="color-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="name-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="calscale-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="method-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="prodid-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="version-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="conference-value">
+        <xs:restriction base="URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="action-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="attach-value">
+        <xs:union memberTypes="xs:anyURI BINARY"/>
+    </xs:simpleType>
+    <xs:simpleType name="attendee-value">
+        <xs:restriction base="CAL-ADDRESS"/>
+    </xs:simpleType>
+    <xs:simpleType name="categories-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="class-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="comment-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="completed-value">
+        <xs:restriction base="DATE-TIME"/>
+    </xs:simpleType>
+    <xs:simpleType name="contact-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="created-value">
+        <xs:restriction base="DATE-TIME"/>
+    </xs:simpleType>
+    <xs:simpleType name="description-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="dtend-value">
+        <xs:union memberTypes="DATE-TIME DATE"/>
+    </xs:simpleType>
+    <xs:simpleType name="dtstamp-value">
+        <xs:restriction base="DATE-TIME"/>
+    </xs:simpleType>
+    <xs:simpleType name="dtstart-value">
+        <xs:union memberTypes="DATE-TIME DATE"/>
+    </xs:simpleType>
+    <xs:simpleType name="due-value">
+        <xs:union memberTypes="DATE-TIME DATE"/>
+    </xs:simpleType>
+    <xs:simpleType name="duration-value">
+        <xs:restriction base="DURATION"/>
+    </xs:simpleType>
+    <xs:simpleType name="exdate-value">
+        <xs:union memberTypes="DATE-TIME DATE"/>
+    </xs:simpleType>
+    <xs:simpleType name="exrule-value">
+        <xs:restriction base="RECUR"/>
+    </xs:simpleType>
+    <xs:simpleType name="freebusy-value">
+        <xs:restriction base="PERIOD"/>
+    </xs:simpleType>
+    <xs:simpleType name="geo-value">
+        <xs:restriction base="FLOAT"/>
+    </xs:simpleType>
+    <xs:simpleType name="image-value">
+        <xs:union memberTypes="URI BINARY"/>
+    </xs:simpleType>
+    <xs:simpleType name="last-modified-value">
+        <xs:restriction base="DATE-TIME"/>
+    </xs:simpleType>
+    <xs:simpleType name="location-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="organizer-value">
+        <xs:restriction base="CAL-ADDRESS"/>
+    </xs:simpleType>
+    <xs:simpleType name="percent-value">
+        <xs:restriction base="INTEGER"/>
+    </xs:simpleType>
+    <xs:simpleType name="priority-value">
+        <xs:restriction base="INTEGER"/>
+    </xs:simpleType>
+    <xs:simpleType name="rdate-value">
+        <xs:union memberTypes="DATE-TIME DATE PERIOD"/>
+    </xs:simpleType>
+    <xs:simpleType name="recurid-value">
+        <xs:union memberTypes="DATE-TIME DATE"/>
+    </xs:simpleType>
+    <xs:simpleType name="related-to-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="request-status-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="repeat-value">
+        <xs:restriction base="INTEGER"/>
+    </xs:simpleType>
+    <xs:simpleType name="resources-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="rrule-value">
+        <xs:restriction base="RECUR"/>
+    </xs:simpleType>
+    <xs:simpleType name="rstatus-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="sequence-value">
+        <xs:restriction base="INTEGER"/>
+    </xs:simpleType>
+    <xs:simpleType name="status-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="summary-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="transp-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="trigger-value">
+        <xs:union memberTypes="DURATION DATE-TIME"/>
+    </xs:simpleType>
+    <xs:simpleType name="tzid-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="tzname-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="tzoffsetfrom-value">
+        <xs:restriction base="UTC-OFFSET"/>
+    </xs:simpleType>
+    <xs:simpleType name="tzoffsetto-value">
+        <xs:restriction base="UTC-OFFSET"/>
+    </xs:simpleType>
+    <xs:simpleType name="tzurl-value">
+        <xs:restriction base="URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="uid-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="url-value">
+        <xs:restriction base="URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="altrep-value">
+        <xs:restriction base="URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="cn-value">
+        <xs:restriction base="TEXT"/>
+    </xs:simpleType>
+    <xs:simpleType name="cutype-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="INDIVIDUAL"/>
+            <xs:enumeration value="GROUP"/>
+            <xs:enumeration value="RESOURCE"/>
+            <xs:enumeration value="ROOM"/>
+            <xs:enumeration value="UNKNOWN"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="delegated-from-value">
+        <xs:restriction base="CAL-ADDRESS"/>
+    </xs:simpleType>
+    <xs:simpleType name="delegated-to-value">
+        <xs:restriction base="CAL-ADDRESS"/>
+    </xs:simpleType>
+    <xs:simpleType name="dir-value">
+        <xs:restriction base="URI"/>
+    </xs:simpleType>
+    <xs:simpleType name="encoding-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="8BIT"/>
+            <xs:enumeration value="BASE64"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="fmttype-value">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="(text|image|audio|video|application)/([a-zA-Z0-9#$amp;\.\+\-\^_]{1,127})"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="fbtype-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FREE"/>
+            <xs:enumeration value="BUSY"/>
+            <xs:enumeration value="BUSY-UNAVAILABLE"/>
+            <xs:enumeration value="BUSY-TENTATIVE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="language-value">
+        <xs:restriction base="xs:language"/>
+    </xs:simpleType>
+    <xs:simpleType name="member-value">
+        <xs:restriction base="CAL-ADDRESS"/>
+    </xs:simpleType>
+    <xs:simpleType name="partstat-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NEEDS-ACTION"/>
+            <xs:enumeration value="ACCEPTED"/>
+            <xs:enumeration value="DECLINED"/>
+            <xs:enumeration value="TENTATIVE"/>
+            <xs:enumeration value="DELEGATED"/>
+            <xs:enumeration value="COMPLETED"/>
+            <xs:enumeration value="IN-PROCESS"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="range-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="THISANDFUTURE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="related-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="START"/>
+            <xs:enumeration value="END"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="reltype-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PARENT"/>
+            <xs:enumeration value="CHILD"/>
+            <xs:enumeration value="SIBLING"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="role-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CHAIR"/>
+            <xs:enumeration value="REQ-PARTICIPANT"/>
+            <xs:enumeration value="OPT-PARTICIPANT"/>
+            <xs:enumeration value="NON-PARTICIPANT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="rsvp-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRUE"/>
+            <xs:enumeration value="FALSE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="sent-by-value">
+        <xs:restriction base="CAL-ADDRESS"/>
+    </xs:simpleType>
+    <xs:simpleType name="parameter-tzid-value">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(/?)(.*)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="value-value">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BINARY"/>
+            <xs:enumeration value="BOOLEAN"/>
+            <xs:enumeration value="CAL-ADDRESS"/>
+            <xs:enumeration value="DATE"/>
+            <xs:enumeration value="DATE-TIME"/>
+            <xs:enumeration value="DURATION"/>
+            <xs:enumeration value="FLOAT"/>
+            <xs:enumeration value="INTEGER"/>
+            <xs:enumeration value="PERIOD"/>
+            <xs:enumeration value="RECUR"/>
+            <xs:enumeration value="TEXT"/>
+            <xs:enumeration value="TIME"/>
+            <xs:enumeration value="URI"/>
+            <xs:enumeration value="UTC-OFFSET"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml-model href="../Schematron/iCalendar.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<icalendar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <vcalendar>
+    <properties>
+      <property>
+        <property-name>CALSCALE</property-name>
+        <calscale>
+          <property-value>
+            <this-is-the-value>GREGORIAN</this-is-the-value>
+          </property-value>
+        </calscale>
+      </property>
+      <property>
+        <property-name>PRODID</property-name>
+        <prodid>
+          <property-value>
+            <this-is-the-value>-//Example Inc.//Example Calendar//EN</this-is-the-value>
+          </property-value>
+        </prodid>
+      </property>
+      <property>
+        <property-name>VERSION</property-name>
+        <version>
+          <property-value>
+            <this-is-the-value>2.0</this-is-the-value>
+          </property-value>
+        </version>
+      </property>
+      <property>
+        <property-name>COMMENT</property-name>
+        <comment>
+          <property-value>
+            <this-is-the-value>This is a comment</this-is-the-value>
+          </property-value>
+        </comment>
+      </property>
+    </properties>
+    <components>
+      <component>
+        <vevent>
+          <properties>
+            <property>
+              <property-name>DTSTAMP</property-name>
+              <dtstamp>
+                <property-value>
+                  <this-is-the-value>20080205T191224Z</this-is-the-value>
+                </property-value>
+              </dtstamp>
+            </property>
+          </properties>
+        </vevent>
+      </component>
+    </components>
+  </vcalendar>
+</icalendar>
