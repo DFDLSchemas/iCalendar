@@ -20,7 +20,8 @@
     </tdml:infoset>
   </tdml:parserTestCase>
   
-  <tdml:parserTestCase name="ex02" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on">
+  <tdml:parserTestCase name="ex02" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on"
+   roundTrip="twoPass">
     <tdml:document>
       <tdml:documentPart type="file">com/mitre/iCalendar/data/example02.ics</tdml:documentPart>
     </tdml:document>
