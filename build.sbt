@@ -7,6 +7,8 @@ version := "0.0.1"
 
 crossPaths := false
 
+scalaVersion := "2.11.12"
+
 testOptions in ThisBuild += Tests.Argument(TestFrameworks.JUnit, "-v")
 
 libraryDependencies in ThisBuild := Seq(
