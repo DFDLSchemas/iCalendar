@@ -45,7 +45,7 @@
 					separatorPosition="infix" sequenceKind="ordered" terminator="" textBidi="no" textNumberCheckPolicy="strict" textNumberRep="standard" textPadKind="none"
 					textStandardBase="10" textTrimKind="none" trailingSkip="0" truncateSpecifiedLengthString="no" utf16Width="fixed"
 					encoding="US-ASCII" representation="text" nilKind="literalValue" nilValueDelimiterPolicy="none" lengthKind="delimited" occursCountKind="parsed"
-			textOutputMinLength="0"/>
+					textOutputMinLength="0" choiceLengthKind="implicit"/>
 			</dfdl:defineFormat>
 			<dfdl:format ref="DefaultPropertiesFormat"/>
 		</xs:appinfo>
@@ -64,7 +64,7 @@
    						is enclosed by the vcalendar XML element.
 					-->
 				<xs:element name="vcalendar" dfdl:initiator="BEGIN:VCALENDAR%NL;" dfdl:terminator="END:VCALENDAR" 
-					        maxOccurs="unbounded" dfdl:occursCountKind="implicit">
+					        maxOccurs="unbounded" dfdl:occursCountKind="parsed">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element ref="properties" />
@@ -242,7 +242,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:sequence dfdl:terminator=":" dfdl:escapeSchemeRef="QuotedStrings">
+			<xs:sequence dfdl:terminator=":">
 				<xs:element name="parameters" type="Parameters" minOccurs="0" dfdl:occursCountKind="implicit" />
 			</xs:sequence>
 			<xs:element name="property-value" type="PropertyValue" />
