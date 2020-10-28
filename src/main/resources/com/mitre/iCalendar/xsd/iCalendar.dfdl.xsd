@@ -4,6 +4,7 @@
 	xmlns:daf="urn:ogf:dfdl:2013:imp:daffodil.apache.org:2018:ext"
 	xmlns:fn="http://www.w3.org/2005/xpath-functions"
 	xmlns:math="http://www.w3.org/2005/xpath-functions/math"
+	xmlns:dfdlx="http://www.ogf.org/dfdl/dfdl-1.0/extensions"
 	elementFormDefault="qualified">
 
 	<!--
@@ -57,33 +58,35 @@
     -->
 	<xs:element name="icalendar">
 		<xs:complexType>
-			<xs:sequence dfdl:separator="%NL;" dfdl:separatorPosition="infix" dfdl:separatorSuppressionPolicy="trailingEmptyStrict">
-				<!--  
-						An iCalendar stream can contain one or more iCalendar objects.  Each
-   						iCalendar object, delimited by "BEGIN:VCALENDAR" and "END:VCALENDAR",
-   						is enclosed by the vcalendar XML element.
-					-->
-				<xs:element name="vcalendar" dfdl:initiator="BEGIN:VCALENDAR%NL;" dfdl:terminator="END:VCALENDAR" 
-					        maxOccurs="unbounded" dfdl:occursCountKind="parsed">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element ref="properties" />
-							<xs:element ref="components" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="endNL" type="xs:string" 
-					dfdl:lengthKind="explicit" dfdl:length="0"
-					minOccurs="0" dfdl:occursCountKind="implicit" />
+        	<xs:sequence dfdlx:layerTransform="lineFolded_iCalendar" dfdlx:layerLengthKind="implicit" dfdlx:layerLengthUnits="bytes" dfdlx:layerEncoding="us-ascii">
+				<xs:sequence dfdl:separator="%NL;" dfdl:separatorPosition="infix" dfdl:separatorSuppressionPolicy="trailingEmptyStrict">
+					<!--  
+							An iCalendar stream can contain one or more iCalendar objects.  Each
+							iCalendar object, delimited by "BEGIN:VCALENDAR" and "END:VCALENDAR",
+							is enclosed by the vcalendar XML element.
+						-->
+					<xs:element name="vcalendar" dfdl:initiator="BEGIN:VCALENDAR%NL;" dfdl:terminator="END:VCALENDAR" 
+								maxOccurs="unbounded" dfdl:occursCountKind="parsed">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="properties" />
+								<xs:element ref="components" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="endNL" type="xs:string" 
+						dfdl:lengthKind="explicit" dfdl:length="0"
+						minOccurs="0" dfdl:occursCountKind="implicit" />
+				</xs:sequence>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	
 	<xs:element name="properties">
 		<xs:complexType>
-			<xs:sequence dfdl:separator="%NL;" dfdl:terminator="%NL;" dfdl:separatorPosition="infix">
+			<xs:sequence dfdl:terminator="%NL;" dfdl:separator="%NL;" dfdl:separatorPosition="infix">
 				<xs:element ref="property" maxOccurs="unbounded" dfdl:occursCountKind="implicit">
-				</xs:element>
+				</xs:element>				
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -199,12 +202,13 @@
 				<xs:element name="sent-by" type="ParameterValue" dfdl:choiceBranchKey="SENT-BY"/>
 				<xs:element name="tzid" type="ParameterValue" dfdl:choiceBranchKey="TZID"/>
 				<xs:element name="value" type="ParameterValue" dfdl:choiceBranchKey="VALUE"/>
+				<xs:element name="x-filename" type="ParameterValue" dfdl:choiceBranchKey="X-FILENAME"/>
 			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="ParameterValue">
-		<xs:sequence dfdl:separator=", %NL;%SP; %NL;%HT;" dfdl:separatorPosition="infix">
+		<xs:sequence dfdl:separator="," dfdl:separatorPosition="infix">
 			<!-- 
 				Values can have quotes around them, so this is where you put the ref to the escapeScheme
 		    -->
@@ -223,7 +227,7 @@
 			
 			Some properties use the semicolon to separate values, e.g., rstatus.
 		-->
-		<xs:sequence dfdl:separator="; , %NL;%SP; %NL;%HT;" dfdl:separatorPosition="infix">
+			<xs:sequence dfdl:separator="," dfdl:separatorPosition="infix">			
 			<!-- 
 				Values can have quotes around them, so this is where you put the ref to the escapeScheme
 		    -->

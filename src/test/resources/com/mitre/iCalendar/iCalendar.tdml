@@ -29,5 +29,42 @@
       <tdml:dfdlInfoset type="file">com/mitre/iCalendar/infosets/example02-results.xml</tdml:dfdlInfoset>
     </tdml:infoset>
   </tdml:parserTestCase>
+ 
+  <!-- 
+    Test parsing a file with an alternate (HTML) format for the DESCRIPTION
+    property. The alternate format is specified by the X-ALT-DESC property
+  -->
+  <tdml:parserTestCase name="ex03-x-alt-1" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on"
+   roundTrip="twoPass">
+    <tdml:document>
+      <tdml:documentPart type="file">com/mitre/iCalendar/data/example03-x-alt-1.ics</tdml:documentPart>
+    </tdml:document>
+    <tdml:infoset>
+      <tdml:dfdlInfoset type="file">com/mitre/iCalendar/infosets/example03-x-alt-1.xml</tdml:dfdlInfoset>
+    </tdml:infoset>
+  </tdml:parserTestCase>
+ 
+  <!-- 
+    Test parsing file with a BASE64 encoded file attachment
+  -->
+  <tdml:parserTestCase name="ex04-attachment" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on"
+   roundTrip="twoPass">
+    <tdml:document>
+      <tdml:documentPart type="file">com/mitre/iCalendar/data/example04-attachment.ics</tdml:documentPart>
+    </tdml:document>
+    <tdml:infoset>
+      <tdml:dfdlInfoset type="file">com/mitre/iCalendar/infosets/example04-attachment.xml</tdml:dfdlInfoset>
+    </tdml:infoset>
+  </tdml:parserTestCase>
+
+  <tdml:parserTestCase name="ex05-x-alt-2" root="icalendar" model="com/mitre/iCalendar/xsd/iCalendar.dfdl.xsd" validation="on"
+   roundTrip="twoPass">
+    <tdml:document>
+      <tdml:documentPart type="file">com/mitre/iCalendar/data/example05-x-alt-2.ics</tdml:documentPart>
+    </tdml:document>
+    <tdml:infoset>
+      <tdml:dfdlInfoset type="file">com/mitre/iCalendar/infosets/example05-x-alt-2.xml</tdml:dfdlInfoset>
+    </tdml:infoset>
+  </tdml:parserTestCase>
 
 </tdml:testSuite>
