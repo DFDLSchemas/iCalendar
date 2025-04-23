@@ -7,8 +7,8 @@ import org.junit.AfterClass
 object Test_iCalendar {
   val runner = Runner("com/mitre/iCalendar", "iCalendar.tdml")
 
-  @AfterClass def shutDown {
-    runner.reset
+  @AfterClass def shutDown = {
+    runner.reset()
   }
 }
 class Test_iCalendar {
