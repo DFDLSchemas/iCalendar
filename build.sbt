@@ -1,7 +1,9 @@
-name := "dfdl-iCalendar"
- 
-organization := "com.mitre"
- 
-version := "0.0.1"
+val root = (project in file("."))
+  .settings(
+    name := "dfdl-iCalendar",
 
-enablePlugins(DaffodilPlugin)
+    organization := "com.mitre",
+
+    version := "0.0.1"
+  )
+  .daffodilProject()
